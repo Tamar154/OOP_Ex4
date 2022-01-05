@@ -31,10 +31,14 @@ pygame.init()
 screen = display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
 clock = pygame.time.Clock()
 pygame.font.init()
-
 client = Client()
 client.start_connection(HOST, PORT)
-
+pygame.display.set_caption("Pokemon game")
+player = pygame.image.load("player.png")
+pikachu = pygame.image.load("pikachu.png")
+snorlax = pygame.image.load("snorlax.png")
+icon = pygame.image.load("pokeball.png")
+pygame.display.set_icon(icon)
 pokemons = client.get_pokemons()
 pokemons_obj = json.loads(pokemons, object_hook=lambda d: SimpleNamespace(**d))
 
@@ -100,9 +104,10 @@ The code below should be improved significantly:
 The GUI and the "algo" are mixed - refactoring using MVC design pattern is required.
 """
 counter = 0
-
+# bp = pygame.image.load("b1.jpg").convert()
+# bp = pygame.image.load("b2.jpg").convert()
+bp = pygame.image.load("b3.jpg").convert()
 while client.is_running() == 'true':
-
     start = int(client.time_to_end())
     pokemons = json.loads(client.get_pokemons(),
                           object_hook=lambda d: SimpleNamespace(**d)).Pokemons
@@ -124,9 +129,9 @@ while client.is_running() == 'true':
             pygame.quit()
             exit(0)
 
-    # refresh surface
+    # refresh surface and add Background
     screen.fill(Color(0, 0, 0))
-
+    screen.blit(bp, (-425, -200))
     # draw nodes
     for n in graph.nodes.values():
         x = my_scale(n.pos.x, x=True)
@@ -134,12 +139,12 @@ while client.is_running() == 'true':
 
         # its just to get a nice antialiased circle
         gfxdraw.filled_circle(screen, int(x), int(y),
-                              radius, Color(64, 80, 174))
+                              radius, Color(255,255,255))
         gfxdraw.aacircle(screen, int(x), int(y),
-                         radius, Color(255, 255, 255))
+                         radius, Color(0, 0, 0))
 
         # draw the node id
-        id_srf = FONT.render(str(n.id), True, Color(255, 255, 255))
+        id_srf = FONT.render(str(n.id), True, Color(255, 0, 0))
         rect = id_srf.get_rect(center=(x, y))
         screen.blit(id_srf, rect)
 
@@ -158,19 +163,23 @@ while client.is_running() == 'true':
             dest_y = my_scale(dest.pos.y, y=True)
 
             # draw the line
-            pygame.draw.line(screen, Color(61, 72, 126),
+            pygame.draw.line(screen, Color(240,220,130),
                              (src_x, src_y), (dest_x, dest_y))
 
     # draw agents
     for agent in agents:
-        pygame.draw.circle(screen, Color(122, 61, 23),
-                           (int(agent.pos.x), int(agent.pos.y)), 10)
+        # pygame.draw.circle(screen, Color(122, 61, 23),
+        #                    (int(agent.pos.x), int(agent.pos.y)), 10)
+        #
+        screen.blit(player, (agent.pos.x, agent.pos.y))
     # draw pokemons (note: should differ (GUI wise) between the up and the down pokemons (currently they are marked in the same way).
     for p in pokemons:
         if p.pos.x < p.pos.y:
-            pygame.draw.circle(screen, Color(0, 255, 255), (int(p.pos.x), int(p.pos.y)), 10)
+            # pygame.draw.circle(screen, Color(0, 255, 255), (int(p.pos.x), int(p.pos.y)), 10)
+            screen.blit(pikachu, (p.pos.x, p.pos.y))
         else:
-            pygame.draw.circle(screen, Color(139, 0, 0), (int(p.pos.x), int(p.pos.y)), 10)
+            # pygame.draw.circle(screen, Color(139, 0, 0), (int(p.pos.x), int(p.pos.y)), 10)
+            screen.blit(snorlax, (p.pos.x, p.pos.y))
 
     # update screen changes
     display.update()
@@ -222,7 +231,6 @@ while client.is_running() == 'true':
         #     '{"agent_id":' + str(picked_agent.id) + ', "next_node_id":' + str(10) + '}')
     # if picked_agent.dest != -1:
     #     client.move()
-
 
     # end = time.time()
     # if (start - int(client.time_to_end())) < 1000 and counter >= 10:
