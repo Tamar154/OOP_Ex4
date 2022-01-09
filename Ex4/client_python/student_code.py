@@ -258,8 +258,8 @@ while client.is_running() == 'true':
                 # if AB + AP - PB < EPSILON:
                 if abs(AP + PB - AB) < EPSILON:
                     pokemons_dict[edge.get_src()] = edge
-                    # client.move()
-                    # time.sleep(time.thread_time()/15)
+                    client.move()
+                    time.sleep(0.1)
 
     minimum = sys.float_info.max
     path = []
