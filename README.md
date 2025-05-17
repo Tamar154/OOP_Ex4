@@ -38,7 +38,7 @@ within a limited time.
    cd client
    python student_code.py
 
-&ensp;&ensp;&ensp;&ensp;or run the file `student_code.py` manually from the IDE.
+&ensp;&ensp;&ensp;&ensp; or run the file `student_code.py` manually from the IDE.
 
 ## Documentation
 
