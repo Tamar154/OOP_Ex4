@@ -1,17 +1,46 @@
-# OOP_Ex4
+# Pokémon Game
 
-In this assignment we will work once again on directed weighted graphs.
+## Overview
 
-This time we use our classes form last assignment that include building the graphs and algorithms that we can use to find details about them.
+**PokemonGame** is a Python-based game where agents navigate a directed weighted graph to catch Pokémon that are located
+on the graph's edges. The goal is to develop intelligent strategies that enable the agents to maximize the total score
+within a limited time.
 
-The assignment will be to build a "Pokémon game". 
+## Getting Started
 
-Were given a directed weighted graph,  a set of agents that will be located on it so they could catch as many Pokémon's as possible. The Pokémon's are located on the graph’s edges.
+### Prerequisites
 
-the agent needs to be on the edge to grab the Pokémon.
+- Python 3.x
+- Git
+- Required libraries listed in `requirements.txt`
 
-On the wiki link below, you will find all the information you need about the functions we used to build the game and our thoughts behind the design and the use of the algorithm.
+### Installation
 
-https://github.com/tamar-revazishvili/OOP_Ex4/wiki
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Tamar154/PokemonGame.git
+   cd PokemonGame
 
-The assignment coded in Python.
+2. Install the dependencies:
+   ```bash
+   pip install -r requirements.txt
+
+### How to Run the Game
+
+1. Start the Game Server:
+   ```bash
+   java -jar Ex4_Server_v0.0.jar <scenario_number>
+
+Replace <scenario_number> with a number from 0 to 15.
+
+2. Launch the Client Code:
+   ```bash
+   cd client
+   python student_code.py
+
+or run the file `student_code.py` manually from the IDE.
+
+## Documentation
+
+For detailed design insights, algorithm descriptions, and architecture breakdown, check out
+the [Wiki](https://github.com/Tamar154/PokemonGame/wiki).
