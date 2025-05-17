@@ -31,14 +31,14 @@ within a limited time.
    ```bash
    java -jar Ex4_Server_v0.0.jar <scenario_number>
 
-Replace <scenario_number> with a number from 0 to 15.
+&ensp;&ensp;&ensp;&ensp; Replace <scenario_number> with a number from 0 to 15.
 
 2. Launch the Client Code:
    ```bash
    cd client
    python student_code.py
 
-or run the file `student_code.py` manually from the IDE.
+&ensp;&ensp;&ensp;&ensp;or run the file `student_code.py` manually from the IDE.
 
 ## Documentation
 
